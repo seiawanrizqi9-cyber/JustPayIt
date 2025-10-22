@@ -24,18 +24,14 @@ export default function Login() {
 
     login(role, name || 'Pengguna', email || 'user@example.com');
 
-    // Cek apakah harus kembali ke checkout
+    // ✅ HANYA SETELAH LOGIN BERHASIL
     const shouldOpenCheckout = localStorage.getItem('shouldOpenCheckoutAfterLogin');
     if (shouldOpenCheckout) {
       localStorage.removeItem('shouldOpenCheckoutAfterLogin');
-      localStorage.setItem('openCheckout', 'true');
-      setTimeout(() => {
-        window.dispatchEvent(new Event('storage'));
-        navigate('/');
-      }, 100);
-    } else {
-      navigate('/');
+      localStorage.setItem('openCheckout', 'true'); // ✅ Buka checkout SEKARANG
     }
+
+    navigate('/');
   };
 
   return (

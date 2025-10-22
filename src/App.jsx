@@ -1,5 +1,5 @@
 // src/App.jsx
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import Navbar from './components/Navbar';
@@ -73,18 +73,6 @@ export default function App() {
   const [showDashboardAccessDenied, setShowDashboardAccessDenied] = useState(false);
   const [isCheckoutPending, setIsCheckoutPending] = useState(false);
 
-  // Cek apakah harus buka checkout setelah login
-  useEffect(() => {
-    const checkCheckout = () => {
-      if (localStorage.getItem('shouldOpenCheckoutAfterLogin')) {
-        localStorage.removeItem('shouldOpenCheckoutAfterLogin');
-        localStorage.setItem('openCheckout', 'true');
-        window.dispatchEvent(new Event('storage'));
-      }
-    };
-    checkCheckout();
-  }, []);
-
   const handleDashboardClick = () => {
     const auth = JSON.parse(localStorage.getItem('auth'));
     if (!auth?.isAuthenticated) {
@@ -128,6 +116,7 @@ export default function App() {
             <LoginRequiredModal
               onLogin={() => {
                 if (isCheckoutPending) {
+                  // ✅ Hanya simpan flag, JANGAN buka checkout sekarang
                   localStorage.setItem('shouldOpenCheckoutAfterLogin', 'true');
                 }
                 setShowLoginRequired(false);

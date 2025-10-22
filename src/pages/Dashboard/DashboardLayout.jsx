@@ -1,6 +1,5 @@
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { getAuth, hasRole } from '../../utils/auth';
-import Profile from './Profile';
 
 export default function DashboardLayout() {
   const navigate = useNavigate();
