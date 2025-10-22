@@ -11,7 +11,7 @@ import ProductDetail from './pages/ProductDetail';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
-import DashboardLayout from './pages/Dashboard/DashboardLayout';
+import DashboardLayout from './pages/dashboard/DashboardLayout';
 import CartSidebar from './components/CartSidebar';
 import Checkout from './pages/Checkout';
 import ErrorBoundary from './components/ErrorBoundary';
