@@ -24,14 +24,13 @@ export default function ProductsList() {
         setLoading(false);
       }
     };
-
     fetchProducts();
   }, []);
 
   if (loading) {
     return (
       <div className="container mx-auto px-4 py-12 text-center">
-        <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-emerald-500 border-t-transparent"></div>
+        <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-emerald-600 border-t-transparent"></div>
         <p className="mt-4 text-gray-600">Memuat produk...</p>
       </div>
     );
@@ -43,7 +42,7 @@ export default function ProductsList() {
         <p className="text-red-600 mb-6">Error: {error}</p>
         <button
           onClick={() => window.location.reload()}
-          className="px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition shadow-md"
+          className="px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition"
         >
           Muat Ulang
         </button>
@@ -58,10 +57,10 @@ export default function ProductsList() {
         {products.map((product) => (
           <div
             key={product.id}
-            className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition"
+            className="bg-white rounded-2xl border border-emerald-100 overflow-hidden shadow-sm hover:shadow-md transition hover:border-emerald-200"
           >
             <Link to={`/products/${product.id}`} className="block">
-              <div className="h-48 bg-gray-100 flex items-center justify-center p-4">
+              <div className="h-48 bg-gray-50 flex items-center justify-center p-4">
                 <img
                   src={product.image}
                   alt={product.title}
@@ -88,14 +87,13 @@ export default function ProductsList() {
                 onClick={(e) => {
                   e.stopPropagation();
                   addToCart(product);
-                  // Notifikasi lokal
                   const notif = document.createElement('div');
                   notif.innerText = 'Barang ditambahkan!';
                   notif.className = 'fixed bottom-4 right-4 bg-emerald-100 text-emerald-800 px-4 py-2 rounded shadow animate-fadeInOut z-50';
                   document.body.appendChild(notif);
                   setTimeout(() => notif.remove(), 2000);
                 }}
-                className="w-full py-1.5 text-xs bg-emerald-100 text-emerald-800 rounded hover:bg-emerald-200 transition font-medium"
+                className="w-full py-2 text-xs bg-emerald-100 text-emerald-800 rounded-lg hover:bg-emerald-200 transition font-medium"
               >
                 + Tambah ke Keranjang
               </button>

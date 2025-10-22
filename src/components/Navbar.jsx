@@ -15,9 +15,9 @@ export default function Navbar({ onOpenCart, onDashboardClick }) {
   ];
 
   return (
-    <nav className="bg-white shadow-sm border-b border-gray-200">
-      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        <Link to="/" className="text-xl font-bold text-emerald-700">
+    <nav className="bg-white shadow-md border-b border-emerald-100">
+      <div className="container mx-auto px-4 py-2 md:px-6 md:py-3 flex items-center justify-between">
+        <Link to="/" className="text-xl md:text-2xl font-bold text-emerald-700">
           JustPayIt
         </Link>
 
@@ -26,7 +26,7 @@ export default function Navbar({ onOpenCart, onDashboardClick }) {
             <Link
               key={link.path}
               to={link.path}
-              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-emerald-600 transition"
+              className="px-3 py-1.5 text-sm md:px-4 md:py-2 md:text-base font-medium text-gray-800 hover:text-emerald-700 transition"
             >
               {link.name}
             </Link>
@@ -34,27 +34,27 @@ export default function Navbar({ onOpenCart, onDashboardClick }) {
 
           <button
             onClick={onDashboardClick}
-            className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-emerald-600 transition"
+            className="px-3 py-1.5 text-sm md:px-4 md:py-2 md:text-base font-medium text-gray-800 hover:text-emerald-700 transition"
           >
             Dashboard
           </button>
 
           <button
             onClick={onOpenCart}
-            className="px-3 py-2 text-lg text-gray-700 hover:text-emerald-600 transition"
+            className="px-3 py-1.5 text-lg md:px-4 md:py-2 md:text-xl text-gray-800 hover:text-emerald-700 transition"
             aria-label="Keranjang"
           >
             🛒
           </button>
 
           {auth?.isAuthenticated ? (
-            <div className="ml-1">
+            <div className="ml-2 md:ml-3">
               <ProfileDropdown initial={auth.name.charAt(0).toUpperCase()} />
             </div>
           ) : (
             <button
               onClick={() => navigate('/login')}
-              className="w-10 h-10 rounded-full bg-gray-100 text-gray-700 flex items-center justify-center text-lg hover:bg-gray-200 transition ml-1"
+              className="w-9 h-9 md:w-11 md:h-11 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center text-base md:text-lg hover:bg-emerald-200 transition ml-2 md:ml-3"
               aria-label="Login"
             >
               👤

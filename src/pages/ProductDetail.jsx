@@ -21,6 +21,7 @@ export default function ProductDetail() {
       try {
         setLoading(true);
         setError(null);
+        // ✅ URL DIBERSIHKAN DARI SPASI
         const res = await fetch(`https://fakestoreapi.com/products/${productId}`);
         if (!res.ok) throw new Error('Produk tidak ditemukan');
         const data = await res.json();
@@ -68,10 +69,7 @@ export default function ProductDetail() {
 
   return (
     <div className="container mx-auto px-4 max-w-5xl">
-      <Link
-        to="/products"
-        className="text-emerald-600 mb-6 inline-block font-medium hover:underline"
-      >
+      <Link to="/products" className="text-emerald-600 mb-6 inline-block font-medium hover:underline">
         ← Kembali ke Produk
       </Link>
 
@@ -89,16 +87,10 @@ export default function ProductDetail() {
           </div>
 
           <div className="md:w-1/2 p-8">
-            <span className="text-sm font-medium text-emerald-600 uppercase">
-              {product.category}
-            </span>
+            <span className="text-sm font-medium text-emerald-600 uppercase">{product.category}</span>
             <h1 className="text-2xl font-bold text-gray-900 mt-2 mb-4">{product.title}</h1>
-            <p className="text-3xl font-bold text-emerald-600 mb-4">
-              ${product.price.toFixed(2)}
-            </p>
-            <p className="text-gray-700 mb-6 leading-relaxed">
-              {product.description}
-            </p>
+            <p className="text-3xl font-bold text-emerald-600 mb-4">${product.price.toFixed(2)}</p>
+            <p className="text-gray-700 mb-6 leading-relaxed">{product.description}</p>
             <button
               onClick={() => addToCart(product)}
               className="w-full py-3 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition shadow-md"
