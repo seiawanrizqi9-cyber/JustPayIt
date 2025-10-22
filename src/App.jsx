@@ -1,21 +1,27 @@
 // src/App.jsx
-import { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { CartProvider } from './context/CartContext';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import ProductsList from './pages/ProductList';
-import ProductDetail from './pages/ProductDetail';
-import Login from './pages/Login';
-import Profile from './pages/Profile';
-import NotFound from './pages/NotFound';
-import DashboardLayout from './pages/dashboard/DashboardLayout';
-import CartSidebar from './components/CartSidebar';
-import Checkout from './pages/Checkout';
-import ErrorBoundary from './components/ErrorBoundary';
-import './App.css';
+import { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { CartProvider } from "./context/CartContext";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import ProductsList from "./pages/ProductList";
+import ProductDetail from "./pages/ProductDetail";
+import Login from "./pages/Login";
+import Profile from "./pages/Profile"; 
+import NotFound from "./pages/NotFound";
+import DashboardLayout from "./pages/dashboard/DashboardLayout";
+import CartSidebar from "./components/CartSidebar";
+import Checkout from "./pages/Checkout";
+import ErrorBoundary from "./components/ErrorBoundary";
+
+import "./App.css";
 
 function LoginRequiredModal({ onLogin, onCancel }) {
   return (
@@ -52,9 +58,7 @@ function DashboardAccessDeniedModal({ onClose }) {
       <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50" />
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
         <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-lg max-w-md w-full text-center">
-          <p className="text-gray-800 mb-6">
-            Selain admin dilarang masuk.
-          </p>
+          <p className="text-gray-800 mb-6">Selain admin dilarang masuk.</p>
           <button
             onClick={onClose}
             className="px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition"
@@ -74,13 +78,13 @@ export default function App() {
   const [isCheckoutPending, setIsCheckoutPending] = useState(false);
 
   const handleDashboardClick = () => {
-    const auth = JSON.parse(localStorage.getItem('auth'));
+    const auth = JSON.parse(localStorage.getItem("auth"));
     if (!auth?.isAuthenticated) {
       setShowLoginRequired(true);
-    } else if (auth.role !== 'Admin') {
+    } else if (auth.role !== "Admin") {
       setShowDashboardAccessDenied(true);
     } else {
-      window.location.href = '/dashboard';
+      window.location.href = "/dashboard";
     }
   };
 
@@ -98,11 +102,11 @@ export default function App() {
               isOpen={isCartOpen}
               onClose={() => setIsCartOpen(false)}
               onCheckout={() => {
-                const auth = JSON.parse(localStorage.getItem('auth'));
+                const auth = JSON.parse(localStorage.getItem("auth"));
                 if (auth?.isAuthenticated) {
                   setIsCartOpen(false);
-                  localStorage.setItem('openCheckout', 'true');
-                  window.dispatchEvent(new Event('storage'));
+                  localStorage.setItem("openCheckout", "true");
+                  window.dispatchEvent(new Event("storage"));
                 } else {
                   setIsCartOpen(false);
                   setIsCheckoutPending(true);
@@ -116,17 +120,16 @@ export default function App() {
             <LoginRequiredModal
               onLogin={() => {
                 if (isCheckoutPending) {
-                  // ✅ Hanya simpan flag, JANGAN buka checkout sekarang
-                  localStorage.setItem('shouldOpenCheckoutAfterLogin', 'true');
+                  localStorage.setItem("shouldOpenCheckoutAfterLogin", "true");
                 }
                 setShowLoginRequired(false);
-                window.location.href = '/login';
+                window.location.href = "/login";
               }}
               onCancel={() => {
-                localStorage.removeItem('cart');
-                window.dispatchEvent(new Event('storage'));
+                localStorage.removeItem("cart");
+                window.dispatchEvent(new Event("storage"));
                 setShowLoginRequired(false);
-                window.location.href = '/';
+                window.location.href = "/";
               }}
             />
           )}

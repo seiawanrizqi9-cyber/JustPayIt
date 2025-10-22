@@ -1,7 +1,6 @@
-// src/pages/Profile.jsx
+// src/pages/dashboard/Profile.jsx
 import { useState, useEffect } from 'react';
 import { getAuth } from '../utils/auth';
-import { Link } from 'react-router-dom';
 
 export default function Profile() {
   const [name, setName] = useState('');
@@ -18,19 +17,10 @@ export default function Profile() {
   }, []);
 
   return (
-    <div className="container mx-auto px-4 max-w-2xl py-6">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-semibold text-gray-900">Profil Pengguna</h2>
-        <Link
-          to="/"
-          className="text-sm text-emerald-600 hover:underline"
-        >
-          ← Kembali ke Beranda
-        </Link>
-      </div>
+    <div className="container mx-auto px-4 max-w-2xl">
+      <h2 className="text-2xl font-semibold text-gray-900 mb-6">Profil Pengguna</h2>
 
-      {/* Status Role */}
-      <div className="mb-8 p-5 bg-white rounded-xl border border-gray-200 shadow-sm">
+      <div className="mb-8">
         <p className="text-gray-700 mb-2">Anda saat ini login sebagai:</p>
         <div className="mt-2">
           {role === 'Admin' ? (
@@ -45,12 +35,11 @@ export default function Profile() {
         </div>
         {role !== 'Admin' && (
           <p className="mt-3 text-sm text-gray-600">
-            Hanya pengguna dengan role <strong>Admin</strong> yang dapat mengakses halaman dashboard.
+            Hanya pengguna dengan role <strong>Admin</strong> yang memiliki akses penuh ke dashboard JustPayIt.
           </p>
         )}
       </div>
 
-      {/* Form Profil */}
       <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
         <div className="space-y-4">
           <div>
