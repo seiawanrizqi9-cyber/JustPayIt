@@ -14,12 +14,12 @@ import Contact from "./pages/Contact";
 import ProductsList from "./pages/ProductList";
 import ProductDetail from "./pages/ProductDetail";
 import Login from "./pages/Login";
-import Profile from "./pages/Profile"; 
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import CartSidebar from "./components/CartSidebar";
 import Checkout from "./pages/Checkout";
 import ErrorBoundary from "./components/ErrorBoundary";
-import DashboardLayout from "./pages/dashboard/DashboardLayout";
+import DashboardLayout from "./pages/DashboardLayout";
 
 import "./App.css";
 
@@ -74,7 +74,8 @@ function DashboardAccessDeniedModal({ onClose }) {
 export default function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [showLoginRequired, setShowLoginRequired] = useState(false);
-  const [showDashboardAccessDenied, setShowDashboardAccessDenied] = useState(false);
+  const [showDashboardAccessDenied, setShowDashboardAccessDenied] =
+    useState(false);
   const [isCheckoutPending, setIsCheckoutPending] = useState(false);
 
   const handleDashboardClick = () => {
@@ -163,7 +164,7 @@ export default function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/dashboard/*" element={<DashboardLayout />} />
+              <Route path="/dashboard" element={<DashboardLayout />} />
               <Route path="/404" element={<NotFound />} />
               <Route path="*" element={<Navigate to="/404" replace />} />
             </Routes>

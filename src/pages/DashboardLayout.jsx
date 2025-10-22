@@ -1,5 +1,5 @@
 // src/pages/dashboard/DashboardLayout.jsx
-import { getAuth, hasRole } from "../../utils/auth";
+import { getAuth, hasRole } from "../utils/auth";
 import { useNavigate } from "react-router-dom";
 
 export default function DashboardLayout() {
@@ -23,7 +23,7 @@ export default function DashboardLayout() {
               Hanya admin yang dapat mengakses halaman dashboard JustPayIt.
             </p>
             <button
-              onClick={() => navigate('/')}
+              onClick={() => navigate("/")}
               className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition"
             >
               Kembali ke Beranda
